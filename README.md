@@ -1,4 +1,4 @@
-# Umer-product-launch
+# Umer-product-launch<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -501,8 +501,8 @@
   <section id="showcase">
     <div class="shell showcase-inner">
       <figure class="mockup-frame">
-        <img src="![alt text](image.png)![alt text](image-1.png)" alt="Placeholder for the StudySpark logo or app mockup — replace with your product screenshot.">
-        <figcaption class="mockup-caption">Insert your StudySpark logo or app mockup here.</figcaption>
+        <img src="studyspark-app-mockup-placeholder.png" alt="Placeholder for the StudySpark logo or app mockup — replace with your product screenshot.">
+        <figcaption class="mockup-caption">![alt text](image.png).</figcaption>
       </figure>
       <div>
         <p class="eyebrow">At a glance</p>
