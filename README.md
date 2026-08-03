@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+# Umer-product-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -176,27 +176,6 @@
   .hero-inner{
     max-width:640px;
   }
-  .hero .shell{
-    display:grid;
-    grid-template-columns:1.05fr 0.95fr;
-    gap:3rem;
-    align-items:center;
-  }
-  .hero-visual{
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.18);
-    border-radius:var(--radius);
-    padding:0.75rem;
-  }
-  .hero-visual img{
-    border-radius:calc(var(--radius) - 6px);
-    width:100%;
-    height:auto;
-  }
-  @media (max-width:900px){
-    .hero .shell{ grid-template-columns:1fr; gap:2.5rem; }
-    .hero-visual{ max-width:420px; margin:0 auto; }
-  }
   .hero .eyebrow{
     background:rgba(255,255,255,0.14);
     color:#fff;
@@ -317,13 +296,15 @@
   }
   .mockup-frame{
     background:linear-gradient(160deg, var(--primary-soft), var(--surface));
-    border:1px solid var(--border);
+    border:1px dashed var(--primary);
     border-radius:var(--radius);
     padding:1rem;
   }
   .mockup-frame img{
     width:100%;
     height:auto;
+    min-height:260px;
+    object-fit:cover;
     border-radius:calc(var(--radius) - 6px);
     background:var(--surface);
   }
@@ -452,19 +433,14 @@
 <main id="main">
 
   <section class="hero" id="top">
-    <div class="shell">
-      <div class="hero-inner">
-        <p class="eyebrow">Now in early access</p>
-        <h1>StudySpark</h1>
-        <p class="tagline">Study Smarter, Not Harder.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#showcase">Get Demo</a>
-          <a class="btn btn-ghost" href="#audience">Pre-order</a>
-        </div>
+    <div class="shell hero-inner">
+      <p class="eyebrow">Now in early access</p>
+      <h1>StudySpark</h1>
+      <p class="tagline">Study Smarter, Not Harder.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#showcase">Get Demo</a>
+        <a class="btn btn-ghost" href="#audience">Pre-order</a>
       </div>
-      <figure class="hero-visual">
-        <img> src="images/studyspark-hero-graphic.png" alt="StudySpark brand graphic showing the app logo, a phone screen with today's plan and upcoming assignments, and a short list of study problems StudySpark solves.">
-      </figure>
     </div>
   </section>
 
@@ -525,8 +501,8 @@
   <section id="showcase">
     <div class="shell showcase-inner">
       <figure class="mockup-frame">
-        <img src="images/studyspark-app-screens.png" alt="Two phone screens showing the StudySpark app: today's schedule with a daily goal tracker on the left, and a weekly progress dashboard with study time and subject breakdown on the right.">
-        <figcaption class="mockup-caption">A look inside StudySpark — today's plan and your weekly progress, side by side.</figcaption>
+        <img src="studyspark-hero-graphic.png" alt="Placeholder for the StudySpark logo or app mockup — replace with your product screenshot.">
+        <figcaption class="mockup-caption">Insert your StudySpark logo or app mockup here.</figcaption>
       </figure>
       <div>
         <p class="eyebrow">At a glance</p>
