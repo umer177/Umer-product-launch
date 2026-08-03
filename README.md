@@ -1,4 +1,4 @@
-# Umer-product-
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,6 +19,16 @@
     --accent:#ffb703;
     --accent-ink:#3a2a00;
     --radius:14px;
+
+    /* spacing scale: consistent rhythm site-wide */
+    --space-1:0.5rem;
+    --space-2:0.75rem;
+    --space-3:1rem;
+    --space-4:1.5rem;
+    --space-5:2rem;
+    --space-6:3rem;
+    --space-7:4rem;
+    --space-8:5.5rem;
   }
 
   *{ box-sizing:border-box; }
@@ -34,6 +44,7 @@
     color:var(--ink);
     font-family:"Inter", system-ui, sans-serif;
     line-height:1.65;
+    -webkit-text-size-adjust:100%;
   }
 
   img{ max-width:100%; display:block; }
@@ -57,9 +68,9 @@
   .skip-link:focus{ left:1rem; top:1rem; }
 
   .shell{
-    max-width:1080px;
+    max-width:1120px;
     margin:0 auto;
-    padding:0 1.5rem;
+    padding:0 var(--space-4);
   }
 
   h1, h2, h3{
@@ -68,9 +79,14 @@
     margin:0;
   }
 
+  /* Type scale: each level is clearly, consistently a step down from the last */
+  h1{ font-size:clamp(2.2rem, 5.5vw, 3.4rem); line-height:1.08; }
+  h2{ font-size:clamp(1.5rem, 3.2vw, 1.95rem); line-height:1.2; }
+  h3{ font-size:1.1rem; line-height:1.35; }
+
   .eyebrow{
     display:inline-block;
-    font-size:0.78rem;
+    font-size:0.76rem;
     font-weight:700;
     letter-spacing:0.09em;
     text-transform:uppercase;
@@ -78,7 +94,7 @@
     background:var(--primary-soft);
     border-radius:999px;
     padding:0.35rem 0.9rem;
-    margin-bottom:1rem;
+    margin-bottom:var(--space-3);
   }
 
   /* ---------- TOP BAR ---------- */
@@ -93,7 +109,7 @@
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:1.1rem 0;
+    padding:var(--space-3) 0;
   }
   .brand{
     display:flex;
@@ -102,6 +118,8 @@
     font-family:"Fraunces", Georgia, serif;
     font-weight:700;
     font-size:1.25rem;
+    text-decoration:none;
+    color:var(--ink);
   }
   .brand-mark{
     display:inline-flex;
@@ -129,7 +147,7 @@
   }
   header.topbar nav a:hover{ color:var(--primary); }
 
-  @media (max-width:640px){
+  @media (max-width:680px){
     header.topbar nav{ display:none; }
   }
 
@@ -141,7 +159,8 @@
     gap:0.5rem;
     font-weight:600;
     font-size:0.98rem;
-    padding:0.85rem 1.6rem;
+    padding:0.9rem 1.7rem;
+    min-height:48px;
     border-radius:999px;
     text-decoration:none;
     border:2px solid transparent;
@@ -161,77 +180,96 @@
   }
   .btn-ghost:hover{ border-color:#fff; }
 
+  @media (max-width:480px){
+    .btn{ width:100%; }
+  }
+
   /* ---------- HERO ---------- */
   .hero{
-    background:radial-gradient(circle at 12% 18%, rgba(255,183,3,0.35), transparent 40%),
-               linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color:#fff;
-    padding:5rem 0 6rem;
     background-image:
       radial-gradient(rgba(255,255,255,0.14) 1.5px, transparent 1.5px),
       radial-gradient(circle at 12% 18%, rgba(255,183,3,0.35), transparent 40%),
       linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
     background-size: 22px 22px, auto, auto;
+    color:#fff;
+    padding:var(--space-7) 0 var(--space-8);
   }
-  .hero-inner{
-    max-width:640px;
+  .hero .shell{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:var(--space-6);
+    align-items:center;
   }
   .hero .eyebrow{
     background:rgba(255,255,255,0.14);
     color:#fff;
   }
-  .hero h1{
-    font-size:clamp(2.4rem, 6vw, 3.4rem);
-    line-height:1.08;
-    margin-bottom:1rem;
-  }
   .hero .tagline{
     font-size:1.2rem;
     color:rgba(255,255,255,0.86);
-    max-width:46ch;
-    margin:0 0 2rem;
+    max-width:44ch;
+    margin:0 0 var(--space-5);
   }
   .hero-actions{
     display:flex;
     flex-wrap:wrap;
-    gap:1rem;
+    gap:var(--space-3);
+  }
+  .hero-visual{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:var(--radius);
+    padding:0.75rem;
+    margin:0;
+  }
+  .hero-visual img{
+    border-radius:calc(var(--radius) - 6px);
+    width:100%;
+    height:auto;
+  }
+
+  @media (max-width:900px){
+    .hero{ padding:var(--space-6) 0 var(--space-7); }
+    .hero .shell{ grid-template-columns:1fr; gap:var(--space-5); text-align:center; }
+    .hero .tagline{ margin-left:auto; margin-right:auto; }
+    .hero-actions{ justify-content:center; }
+    .hero-visual{ max-width:380px; margin:0 auto; }
   }
 
   /* ---------- SECTIONS ---------- */
-  section{ padding:4.5rem 0; }
+  section{ padding:var(--space-7) 0; }
 
   .section-head{
     max-width:56ch;
-    margin:0 0 2.5rem;
+    margin:0 0 var(--space-6);
   }
   .section-head h2{
-    font-size:1.9rem;
-    margin-bottom:0.75rem;
+    margin-bottom:var(--space-2);
   }
   .section-head p{
     color:var(--ink-soft);
     margin:0;
+    font-size:1.02rem;
   }
 
   /* ---------- PROBLEM ---------- */
   .problem-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
-    gap:1.5rem;
+    gap:var(--space-4);
   }
   .problem-card{
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:1.75rem;
+    padding:var(--space-4);
   }
   .problem-card .glyph{
     font-size:1.6rem;
-    margin-bottom:0.9rem;
+    margin-bottom:var(--space-2);
   }
   .problem-card h3{
-    font-size:1.1rem;
-    margin-bottom:0.5rem;
+    margin-bottom:var(--space-1);
   }
   .problem-card p{
     color:var(--ink-soft);
@@ -248,12 +286,12 @@
   .feature-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
-    gap:1.5rem;
+    gap:var(--space-4);
   }
   .feature-card{
     background:var(--surface);
     border-radius:var(--radius);
-    padding:2rem 1.75rem;
+    padding:var(--space-5) var(--space-4);
     box-shadow:0 1px 2px rgba(28,26,46,0.04), 0 12px 28px rgba(28,26,46,0.06);
     transition:transform 0.2s ease, box-shadow 0.2s ease;
   }
@@ -271,11 +309,10 @@
     background:var(--primary);
     color:#fff;
     font-size:1.35rem;
-    margin-bottom:1.1rem;
+    margin-bottom:var(--space-3);
   }
   .feature-card h3{
-    font-size:1.15rem;
-    margin-bottom:0.5rem;
+    margin-bottom:var(--space-1);
   }
   .feature-card p{
     color:var(--ink-soft);
@@ -291,34 +328,37 @@
   .showcase-inner{
     display:grid;
     grid-template-columns:1.1fr 0.9fr;
-    gap:3rem;
+    gap:var(--space-6);
     align-items:center;
   }
   .mockup-frame{
     background:linear-gradient(160deg, var(--primary-soft), var(--surface));
-    border:1px dashed var(--primary);
+    border:1px solid var(--border);
     border-radius:var(--radius);
-    padding:1rem;
+    padding:var(--space-3);
+    margin:0;
   }
   .mockup-frame img{
     width:100%;
     height:auto;
-    min-height:260px;
-    object-fit:cover;
     border-radius:calc(var(--radius) - 6px);
     background:var(--surface);
   }
   .mockup-caption{
-    margin:0.75rem 0 0;
+    margin:var(--space-2) 0 0;
     font-size:0.85rem;
     color:var(--ink-soft);
     text-align:center;
+  }
+  .showcase-copy p{
+    color:var(--ink-soft);
+    margin:var(--space-2) 0 var(--space-4);
   }
   .tag-list{
     list-style:none;
     display:flex;
     flex-wrap:wrap;
-    gap:0.65rem;
+    gap:var(--space-2);
     margin:0;
     padding:0;
   }
@@ -350,8 +390,9 @@
   .audience-pills{
     display:flex;
     flex-wrap:wrap;
-    gap:0.75rem;
-    margin-top:1.75rem;
+    gap:var(--space-2);
+    margin-top:var(--space-5);
+    padding:0;
   }
   .audience-pills li{
     list-style:none;
@@ -364,23 +405,22 @@
   /* ---------- CTA STRIP ---------- */
   .cta-strip{
     text-align:center;
-    padding:4rem 0;
+    padding:var(--space-7) 0;
   }
   .cta-strip h2{
-    font-size:1.8rem;
-    margin-bottom:1rem;
+    margin-bottom:var(--space-3);
   }
   .cta-strip p{
     color:var(--ink-soft);
     max-width:48ch;
-    margin:0 auto 1.75rem;
+    margin:0 auto var(--space-5);
   }
 
   /* ---------- FOOTER ---------- */
   footer.site-footer{
     background:var(--ink);
     color:rgba(255,255,255,0.75);
-    padding:2.5rem 0;
+    padding:var(--space-5) 0;
     font-size:0.9rem;
   }
   .footer-inner{
@@ -388,7 +428,7 @@
     flex-wrap:wrap;
     justify-content:space-between;
     align-items:center;
-    gap:1rem;
+    gap:var(--space-3);
   }
   footer.site-footer a{
     color:rgba(255,255,255,0.75);
@@ -398,13 +438,16 @@
   .footer-links{
     list-style:none;
     display:flex;
-    gap:1.5rem;
+    gap:var(--space-4);
     margin:0;
     padding:0;
   }
 
+  /* ---------- MOBILE-WIDE REFINEMENTS ---------- */
   @media (max-width:600px){
-    section{ padding:3.25rem 0; }
+    .shell{ padding:0 var(--space-3); }
+    section{ padding:var(--space-6) 0; }
+    .section-head{ margin-bottom:var(--space-4); text-align:left; }
     .footer-inner{ flex-direction:column; align-items:flex-start; }
   }
 </style>
@@ -433,14 +476,19 @@
 <main id="main">
 
   <section class="hero" id="top">
-    <div class="shell hero-inner">
-      <p class="eyebrow">Now in early access</p>
-      <h1>StudySpark</h1>
-      <p class="tagline">Study Smarter, Not Harder.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#showcase">Get Demo</a>
-        <a class="btn btn-ghost" href="#audience">Pre-order</a>
+    <div class="shell">
+      <div class="hero-inner">
+        <p class="eyebrow">Now in early access</p>
+        <h1>StudySpark</h1>
+        <p class="tagline">Study Smarter, Not Harder.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#showcase">Get Demo</a>
+          <a class="btn btn-ghost" href="#audience">Pre-order</a>
+        </div>
       </div>
+      <figure class="hero-visual">
+        <img src="images/studyspark-hero-graphic.png" alt="StudySpark brand graphic showing the app logo, a phone screen with today's plan and upcoming assignments, and a short list of study problems StudySpark solves.">
+      </figure>
     </div>
   </section>
 
@@ -501,13 +549,13 @@
   <section id="showcase">
     <div class="shell showcase-inner">
       <figure class="mockup-frame">
-        <img src="studyspark-hero-graphic.png" alt="Placeholder for the StudySpark logo or app mockup — ![alt text](image.png).">
-        <figcaption class="mockup-caption">Insert your StudySpark logo or app mockup here.</figcaption>
+        <img src="images/studyspark-app-screens.png" alt="Two phone screens showing the StudySpark app: today's schedule with a daily goal tracker on the left, and a weekly progress dashboard with study time and subject breakdown on the right.">
+        <figcaption class="mockup-caption">A look inside StudySpark — today's plan and your weekly progress, side by side.</figcaption>
       </figure>
-      <div>
+      <div class="showcase-copy">
         <p class="eyebrow">At a glance</p>
         <h2>One app, built around how you actually study</h2>
-        <p style="color:var(--ink-soft); margin:0.75rem 0 1.75rem;">A quick look at what's inside StudySpark.</p>
+        <p>A quick look at what's inside StudySpark.</p>
         <ul class="tag-list">
           <li>🤖 AI-Powered</li>
           <li>📚 Study Planner</li>
