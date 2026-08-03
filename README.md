@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StudySpark — Study Smarter, Not Harder.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#fbf9f5;
@@ -36,6 +36,11 @@
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  @keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(16px); }
+    to{ opacity:1; transform:translateY(0); }
   }
 
   body{
@@ -74,7 +79,7 @@
   }
 
   h1, h2, h3{
-    font-family:"Fraunces", Georgia, serif;
+    font-family:"Space Grotesk", system-ui, sans-serif;
     font-weight:700;
     margin:0;
   }
@@ -115,7 +120,7 @@
     display:flex;
     align-items:center;
     gap:0.5rem;
-    font-family:"Fraunces", Georgia, serif;
+    font-family:"Space Grotesk", system-ui, sans-serif;
     font-weight:700;
     font-size:1.25rem;
     text-decoration:none;
@@ -172,6 +177,11 @@
     background:var(--accent);
     color:var(--accent-ink);
     box-shadow:0 8px 20px rgba(255,183,3,0.35);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 12px 28px rgba(255,183,3,0.45);
   }
   .btn-ghost{
     background:transparent;
@@ -203,17 +213,23 @@
   .hero .eyebrow{
     background:rgba(255,255,255,0.14);
     color:#fff;
+    animation:fadeInUp 0.6s ease both;
+  }
+  .hero h1{
+    animation:fadeInUp 0.6s ease 0.08s both;
   }
   .hero .tagline{
     font-size:1.2rem;
     color:rgba(255,255,255,0.86);
     max-width:44ch;
     margin:0 0 var(--space-5);
+    animation:fadeInUp 0.6s ease 0.16s both;
   }
   .hero-actions{
     display:flex;
     flex-wrap:wrap;
     gap:var(--space-3);
+    animation:fadeInUp 0.6s ease 0.24s both;
   }
   .hero-visual{
     background:rgba(255,255,255,0.08);
@@ -221,6 +237,7 @@
     border-radius:var(--radius);
     padding:0.75rem;
     margin:0;
+    animation:fadeInUp 0.7s ease 0.3s both;
   }
   .hero-visual img{
     border-radius:calc(var(--radius) - 6px);
@@ -310,6 +327,10 @@
     color:#fff;
     font-size:1.35rem;
     margin-bottom:var(--space-3);
+    transition:transform 0.25s ease;
+  }
+  .feature-card:hover .feature-icon{
+    transform:scale(1.08);
   }
   .feature-card h3{
     margin-bottom:var(--space-1);
