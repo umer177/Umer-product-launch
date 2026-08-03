@@ -501,7 +501,7 @@
   <section id="showcase">
     <div class="shell showcase-inner">
       <figure class="mockup-frame">
-        <img src="studyspark-app-mockup-placeholder.png" alt="Placeholder for the StudySpark logo or app mockup — replace with your product screenshot.">
+        <img src="studyspark-app-mockup-placeholder.png" alt="Placeholder for the StudySpark logo or app mockup — ![,![alt text](image-1.png)](image.png).">
         <figcaption class="mockup-caption">Insert your StudySpark logo or app mockup here.</figcaption>
       </figure>
       <div>
