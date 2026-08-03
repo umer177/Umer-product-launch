@@ -463,7 +463,7 @@
         </div>
       </div>
       <figure class="hero-visual">
-        <img src="images/studyspark-hero-graphic.png" alt="StudySpark brand graphic showing the app logo, a phone screen with today's plan and upcoming assignments, and a short list of study problems StudySpark solves.">
+        <img> src="images/studyspark-hero-graphic.png" alt="StudySpark brand graphic showing the app logo, a phone screen with today's plan and upcoming assignments, and a short list of study problems StudySpark solves.">
       </figure>
     </div>
   </section>
