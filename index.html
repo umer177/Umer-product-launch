@@ -563,6 +563,32 @@
     margin:0 auto var(--space-5);
   }
 
+  /* ---------- PROCESS NOTE ---------- */
+  .process-note{
+    background:var(--surface);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    transition:background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .process-note .shell{
+    max-width:760px;
+  }
+  .process-note h2{
+    font-size:1.3rem;
+    margin-bottom:var(--space-3);
+  }
+  .process-note-body{
+    color:var(--ink-soft);
+    font-size:0.98rem;
+    margin:0;
+  }
+  .process-note-body[data-placeholder]{
+    border:1px dashed var(--border);
+    border-radius:10px;
+    padding:var(--space-3);
+    font-style:italic;
+  }
+
   /* ---------- FOOTER ---------- */
   footer.site-footer{
     background:var(--deep);
@@ -747,6 +773,27 @@
       <h2>Ready to study smarter?</h2>
       <p>Join early access and be the first to try StudySpark when it launches.</p>
       <a class="btn btn-primary" href="#top">Pre-order StudySpark</a>
+    </div>
+  </section>
+
+  <section class="process-note" id="process-note">
+    <div class="shell">
+      <p class="eyebrow">Behind the design</p>
+      <h2>How AI fit into building this page</h2>
+      <!--
+        Write this part yourself — 3 to 4 honest sentences. Prompts to work from:
+        1. What did you ask AI for first?
+        2. What did you change or reject from what it gave you?
+        3. What's one moment you made a real creative decision instead of
+           accepting AI's first output?
+        Replace the paragraph below with your own answer, then delete the
+        data-placeholder attribute so the dashed box goes away.
+      -->
+      <p class="process-note-body" data-placeholder>
+        [I used AI to create the HTML structure and Claude AI to improve
+        my design.I customized the layout and colors to make it unique.]
+    
+      </p>
     </div>
   </section>
 
