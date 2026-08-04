@@ -25,6 +25,10 @@
     --accent-ink:#3a2a00;
     --radius:14px;
 
+    /* Fixed "always dark" tone for elements (footer, skip-link) that should
+       stay dark regardless of theme, since --ink itself flips in dark mode. */
+    --deep:#1c1a2e;
+
     /* spacing scale: consistent rhythm site-wide */
     --space-1:0.5rem;
     --space-2:0.75rem;
@@ -34,6 +38,22 @@
     --space-6:3rem;
     --space-7:4rem;
     --space-8:5.5rem;
+  }
+
+  /* ---------- DARK MODE ----------
+     A hidden checkbox + styled label toggle switch. When the checkbox
+     is checked, :has() lets us redefine the custom properties on body,
+     which cascades to every element that reads var(--bg), var(--ink), etc.
+     No JavaScript involved. */
+  body:has(#theme-toggle:checked){
+    --bg:#141225;
+    --surface:#1e1b30;
+    --ink:#f2f0fb;
+    --ink-soft:#b6b0d6;
+    --border:#332c52;
+    --primary:#ad9bff;
+    --primary-dark:#1c1730;
+    --primary-soft:#241f3d;
   }
 
   *{ box-sizing:border-box; }
@@ -55,6 +75,7 @@
     font-family:"Inter", system-ui, sans-serif;
     line-height:1.65;
     -webkit-text-size-adjust:100%;
+    transition:background-color 0.3s ease, color 0.3s ease;
   }
 
   img{ max-width:100%; display:block; }
@@ -69,7 +90,7 @@
   .skip-link{
     position:absolute;
     left:-999px;
-    background:var(--ink);
+    background:var(--deep);
     color:#fff;
     padding:0.75rem 1.25rem;
     border-radius:6px;
@@ -114,11 +135,13 @@
     position:sticky;
     top:0;
     z-index:10;
+    transition:background-color 0.3s ease, border-color 0.3s ease;
   }
   .topbar-inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:var(--space-3);
     padding:var(--space-3) 0;
   }
   .brand{
@@ -157,8 +180,74 @@
   }
   header.topbar nav a:hover{ color:var(--primary); }
 
+  .topbar-controls{
+    display:flex;
+    align-items:center;
+    gap:var(--space-3);
+    margin-left:auto;
+  }
+
   @media (max-width:680px){
     header.topbar nav{ display:none; }
+    .topbar-controls{ margin-left:0; }
+  }
+
+  /* ---------- DARK MODE TOGGLE SWITCH ---------- */
+  .theme-switch{
+    display:inline-flex;
+    align-items:center;
+  }
+  .theme-toggle-input{
+    /* visually hidden, but still focusable/operable via keyboard */
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
+  .theme-toggle-label{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:space-between;
+    width:52px;
+    height:28px;
+    padding:0 6px;
+    background:var(--border);
+    border-radius:999px;
+    cursor:pointer;
+    transition:background-color 0.25s ease;
+  }
+  .theme-toggle-label .icon{
+    font-size:0.7rem;
+    line-height:1;
+    z-index:1;
+    pointer-events:none;
+  }
+  .toggle-thumb{
+    position:absolute;
+    top:3px;
+    left:3px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:var(--surface);
+    box-shadow:0 1px 3px rgba(0,0,0,0.3);
+    transition:transform 0.25s ease, background-color 0.25s ease;
+  }
+  .theme-toggle-input:checked + .theme-toggle-label{
+    background:var(--primary);
+  }
+  .theme-toggle-input:checked + .theme-toggle-label .toggle-thumb{
+    transform:translateX(24px);
+  }
+  .theme-toggle-input:focus-visible + .theme-toggle-label{
+    outline:3px solid var(--primary);
+    outline-offset:3px;
   }
 
   /* ---------- BUTTONS ---------- */
@@ -201,22 +290,48 @@
 
   /* ---------- HERO ---------- */
   .hero{
+    position:relative;
+    overflow:hidden;
     background-image:
       radial-gradient(rgba(255,255,255,0.14) 1.5px, transparent 1.5px),
-      radial-gradient(circle at 12% 18%, rgba(255,183,3,0.35), transparent 40%),
-      linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
-    background-size: 22px 22px, auto, auto;
+      radial-gradient(circle at 10% 15%, rgba(255,183,3,0.4), transparent 45%),
+      radial-gradient(circle at 92% 80%, rgba(140,113,235,0.4), transparent 50%),
+      linear-gradient(135deg, var(--primary) 0%, #5b3fb8 45%, var(--primary-dark) 100%);
+    background-size: 22px 22px, auto, auto, auto;
     color:#fff;
     padding:var(--space-7) 0 var(--space-8);
+    transition:background-color 0.3s ease;
   }
   .hero .shell{
     display:grid;
     grid-template-columns:1.05fr 0.95fr;
     gap:var(--space-6);
     align-items:center;
+    position:relative;
+    z-index:1;
   }
+
+  /* Glassmorphism text card: translucent surface, blurred backdrop,
+     hairline border to catch light like frosted glass. */
+  .hero-inner{
+    background:rgba(255,255,255,0.10);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.24);
+    border-radius:var(--radius);
+    padding:var(--space-5);
+    box-shadow:
+      0 8px 32px rgba(15,10,40,0.22),
+      inset 0 1px 0 rgba(255,255,255,0.18);
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+    .hero-inner{
+      background:rgba(38,28,90,0.55);
+    }
+  }
+
   .hero .eyebrow{
-    background:rgba(255,255,255,0.14);
+    background:rgba(255,255,255,0.16);
     color:#fff;
     animation:fadeInUp 0.6s ease both;
   }
@@ -243,6 +358,8 @@
     padding:0.75rem;
     margin:0;
     animation:fadeInUp 0.7s ease 0.3s both;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
   }
   .hero-visual img{
     border-radius:calc(var(--radius) - 6px);
@@ -285,6 +402,7 @@
     border:1px solid var(--border);
     border-radius:var(--radius);
     padding:var(--space-4);
+    transition:background-color 0.3s ease, border-color 0.3s ease;
   }
   .problem-card .glyph{
     font-size:1.6rem;
@@ -304,7 +422,7 @@
   }
 
   /* ---------- FEATURES ---------- */
-  .features{ background:var(--primary-soft); }
+  .features{ background:var(--primary-soft); transition:background-color 0.3s ease; }
   .feature-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -315,7 +433,7 @@
     border-radius:var(--radius);
     padding:var(--space-5) var(--space-4);
     box-shadow:0 1px 2px rgba(28,26,46,0.04), 0 12px 28px rgba(28,26,46,0.06);
-    transition:transform 0.2s ease, box-shadow 0.2s ease;
+    transition:transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
   }
   .feature-card:hover{
     transform:translateY(-4px);
@@ -332,7 +450,7 @@
     color:#fff;
     font-size:1.35rem;
     margin-bottom:var(--space-3);
-    transition:transform 0.25s ease;
+    transition:transform 0.25s ease, background-color 0.3s ease;
   }
   .feature-card:hover .feature-icon{
     transform:scale(1.08);
@@ -363,6 +481,7 @@
     border-radius:var(--radius);
     padding:var(--space-3);
     margin:0;
+    transition:background-color 0.3s ease, border-color 0.3s ease;
   }
   .mockup-frame img{
     width:100%;
@@ -395,6 +514,7 @@
     padding:0.5rem 1rem;
     font-size:0.9rem;
     font-weight:500;
+    transition:background-color 0.3s ease, border-color 0.3s ease;
   }
 
   @media (max-width:800px){
@@ -405,6 +525,7 @@
   .audience{
     background:var(--primary-dark);
     color:#fff;
+    transition:background-color 0.3s ease;
   }
   .audience .section-head p{
     color:rgba(255,255,255,0.82);
@@ -444,7 +565,7 @@
 
   /* ---------- FOOTER ---------- */
   footer.site-footer{
-    background:var(--ink);
+    background:var(--deep);
     color:rgba(255,255,255,0.75);
     padding:var(--space-5) 0;
     font-size:0.9rem;
@@ -496,6 +617,16 @@
         <li><a href="#audience">Who it's for</a></li>
       </ul>
     </nav>
+    <div class="topbar-controls">
+      <div class="theme-switch">
+        <input type="checkbox" id="theme-toggle" class="theme-toggle-input">
+        <label for="theme-toggle" class="theme-toggle-label" aria-label="Toggle dark mode">
+          <span class="icon" aria-hidden="true">☀️</span>
+          <span class="icon" aria-hidden="true">🌙</span>
+          <span class="toggle-thumb"></span>
+        </label>
+      </div>
+    </div>
   </div>
 </header>
 
